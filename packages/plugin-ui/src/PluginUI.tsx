@@ -47,7 +47,7 @@ export const PluginUI = (props: PluginUIProps) => {
   return (
     <div className="flex flex-col h-full dark:text-white">
       <div className="p-2 grid grid-cols-4 sm:grid-cols-2 md:grid-cols-4 gap-1">
-        {["HTML", "Tailwind", "Flutter", "SwiftUI"].map((tab) => (
+        {["HTML", "Tailwind", "Flutter", "SwiftUI", "Quarkly"].map((tab) => (
           <button
             key={`tab ${tab}`}
             className={`w-full p-1 text-sm ${

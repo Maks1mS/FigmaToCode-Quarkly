@@ -12,15 +12,21 @@ export const formatWithJSX = (
     .join("");
 
   if (typeof value === "number") {
+    /*
     if (isJsx) {
       return `${jsx_property}: ${sliceNum(value)}`;
     } else {
       return `${property}: ${sliceNum(value)}px`;
     }
-  } else if (isJsx) {
+    */
+    return `${property}="${sliceNum(value)}px"`;
+  } /* else if (isJsx) {
     return `${jsx_property}: '${value}'`;
   } else {
     return `${property}: ${value}`;
+  } */
+  else {
+    return `${property}="${value}"`;
   }
 };
 
@@ -39,4 +45,4 @@ export const formatMultipleJSX = (
   Object.entries(styles)
     .filter(([key, value]) => value)
     .map(([key, value]) => formatWithJSX(key, isJsx, value!))
-    .join(isJsx ? ", " : "; ");
+    .join(" ");

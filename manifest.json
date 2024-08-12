@@ -1,6 +1,6 @@
 {
   "name": "Figma to Code [HTML, Tailwind, Flutter, SwiftUI]",
-  "id": "842128343887142055",
+  "id": "",
   "api": "1.0.0",
   "main": "apps/plugin/dist/code.js",
   "ui": "apps/plugin/dist/index.html",
@@ -16,6 +16,7 @@
     { "label": "Tailwind", "value": "tailwind" },
     { "label": "Tailwind (JSX)", "value": "tailwind_jsx" },
     { "label": "Flutter", "value": "flutter" },
-    { "label": "SwiftUI", "value": "swiftUI" }
+    { "label": "SwiftUI", "value": "swiftUI" },
+    { "label": "Quarkly", "value": "html_jsx" }
   ]
 }
