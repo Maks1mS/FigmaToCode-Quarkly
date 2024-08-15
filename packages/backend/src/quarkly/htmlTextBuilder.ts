@@ -19,7 +19,7 @@ export class HtmlTextBuilder extends HtmlDefaultBuilder {
     }
 
     return segments.map((segment) => {
-      const fontStyle = `${this.getFontStyle(segment.fontName.style)} ${segment.fontWeight} ${segment.fontSize}px ${segment.fontName.family}`;
+      const fontStyle = `${this.getFontStyle(segment.fontName.style)} ${segment.fontWeight} ${segment.fontSize}px ${segment.fontName.family}`.trim();
 
       const styleAttributes = formatMultipleJSX(
         {
@@ -31,6 +31,7 @@ export class HtmlTextBuilder extends HtmlDefaultBuilder {
           "letter-spacing": this.letterSpacing(segment.letterSpacing, segment.fontSize),
           // "text-indent": segment.indentation,
           "word-wrap": "break-word",
+          "padding": "unset",
         },
         this.isJSX
       );

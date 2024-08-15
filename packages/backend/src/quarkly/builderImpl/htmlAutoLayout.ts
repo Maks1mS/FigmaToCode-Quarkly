@@ -54,7 +54,7 @@ export const htmlAutoLayoutProps = (
       "flex-direction": getFlexDirection(autoLayout),
       "justify-content": getJustifyContent(autoLayout),
       "align-items": getAlignItems(autoLayout),
-      gap: getGap(autoLayout),
+      "grid-gap": getGap(autoLayout),
       display: getFlex(node, autoLayout),
     },
     isJsx
