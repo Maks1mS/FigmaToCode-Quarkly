@@ -5,10 +5,11 @@ import {
 } from "./common/retrieveUI/retrieveColors";
 import { flutterMain } from "./flutter/flutterMain";
 import { htmlMain } from "./html/htmlMain";
+import { quarklyMain } from "./quarkly/quarklyMain";
 import { swiftuiMain } from "./swiftui/swiftuiMain";
 import { tailwindMain } from "./tailwind/tailwindMain";
 
-export type FrameworkTypes = "Flutter" | "SwiftUI" | "HTML" | "Tailwind";
+export type FrameworkTypes = "Flutter" | "SwiftUI" | "HTML" | "Tailwind" | "Quarkly";
 
 export type PluginSettings = {
   framework: FrameworkTypes;
@@ -50,6 +51,9 @@ export const run = (settings: PluginSettings) => {
       break;
     case "SwiftUI":
       result = swiftuiMain(convertedSelection, settings);
+      break;
+    case "Quarkly":
+      result = quarklyMain(convertedSelection, settings);
       break;
   }
 

@@ -3,7 +3,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { coldarkDark as theme } from "react-syntax-highlighter/dist/esm/styles/prism";
 import copy from "copy-to-clipboard";
 
-export type FrameworkTypes = "HTML" | "Tailwind" | "Flutter" | "SwiftUI";
+export type FrameworkTypes = "HTML" | "Tailwind" | "Flutter" | "SwiftUI" | "Quarkly";
 
 // This must be kept in sync with the backend.
 export type PluginSettings = {
@@ -46,23 +46,6 @@ export const PluginUI = (props: PluginUIProps) => {
 
   return (
     <div className="flex flex-col h-full dark:text-white">
-      <div className="p-2 grid grid-cols-4 sm:grid-cols-2 md:grid-cols-4 gap-1">
-        {["HTML", "Tailwind", "Flutter", "SwiftUI"].map((tab) => (
-          <button
-            key={`tab ${tab}`}
-            className={`w-full p-1 text-sm ${
-              props.selectedFramework === tab
-                ? "bg-green-500 dark:bg-green-600 text-white rounded-md font-semibold shadow-sm"
-                : "bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-200 border focus:border-0 border-neutral-300 dark:border-neutral-600 rounded-md hover:bg-green-600 dark:hover:bg-green-800 dark:hover:border-green-800 hover:text-white dark:hover:text-white font-semibold shadow-sm"
-            }`}
-            onClick={() => {
-              props.setSelectedFramework(tab as FrameworkTypes);
-            }}
-          >
-            {tab}
-          </button>
-        ))}
-      </div>
       <div
         style={{
           height: 1,
@@ -75,14 +58,17 @@ export const PluginUI = (props: PluginUIProps) => {
           {/* <div className="flex flex-col items-center p-4 bg-neutral-50 dark:bg-neutral-800 rounded">
             <Description selected={props.selectedFramework} />
           </div> */}
-
-          {props.htmlPreview && (
-            <Preview
-              htmlPreview={props.htmlPreview}
-              isResponsiveExpanded={isResponsiveExpanded}
-              setIsResponsiveExpanded={setIsResponsiveExpanded}
-            />
-          )}
+          {
+            /*
+              {props.htmlPreview && (
+                <Preview
+                  htmlPreview={props.htmlPreview}
+                  isResponsiveExpanded={isResponsiveExpanded}
+                  setIsResponsiveExpanded={setIsResponsiveExpanded}
+                />
+            )}
+            */
+          }
           {/* <ResponsiveGrade /> */}
           {/* <div className="h-2"></div>
         <div className="flex justify-end w-full mb-1">
@@ -328,68 +314,6 @@ export const CodePanel = (props: {
             Copy
           </button>
         </div>
-
-        <div className="flex gap-2 justify-center flex-col p-2 dark:bg-black dark:bg-opacity-25 bg-neutral-100 ring-1 ring-neutral-200 dark:ring-neutral-700 rounded-lg text-sm">
-          <div className="flex gap-2 items-center flex-wrap">
-            {/* <span className="min-w-[60px] font-medium">Settings</span> */}
-
-            {preferenceOptions
-              .filter((preference) =>
-                preference.includedLanguages?.includes(props.selectedFramework)
-              )
-              .map((preference) => (
-                <SelectableToggle
-                  key={preference.propertyName}
-                  title={preference.label}
-                  description={preference.description}
-                  isSelected={
-                    props.preferences?.[preference.propertyName] ??
-                    preference.isDefault
-                  }
-                  onSelect={(value) => {
-                    props.onPreferenceChange(preference.propertyName, value);
-                  }}
-                  buttonClass="bg-green-100 dark:bg-black dark:ring-green-800 ring-green-500"
-                  checkClass="bg-green-400 dark:bg-black dark:bg-green-500 dark:border-green-500 ring-green-300 border-green-400"
-                />
-              ))}
-          </div>
-          {selectablePreferencesFiltered.length > 0 && (
-            <>
-              <div className="w-full h-px bg-neutral-200 dark:bg-neutral-700" />
-
-              <div className="flex gap-2 items-center flex-wrap">
-                {selectablePreferencesFiltered.map((preference) => (
-                  <>
-                    {/* <span className="min-w-[60px] font-medium">
-                      {preference.label}
-                    </span> */}
-                    {preference.options.map((option) => (
-                      <SelectableToggle
-                        key={option.label}
-                        title={option.label}
-                        isSelected={
-                          option.value ===
-                            props.preferences?.[preference.propertyName] ??
-                          option.isDefault
-                        }
-                        onSelect={() => {
-                          props.onPreferenceChange(
-                            preference.propertyName,
-                            option.value
-                          );
-                        }}
-                        buttonClass="bg-blue-100 dark:bg-black dark:ring-blue-800"
-                        checkClass="bg-blue-400 dark:bg-black dark:bg-blue-500 dark:border-blue-500 ring-blue-300 border-blue-400"
-                      />
-                    ))}
-                  </>
-                ))}
-              </div>
-            </>
-          )}
-        </div>
-
         <div
           className={`rounded-lg ring-green-600 transition-all duratio overflow-clip ${
             syntaxHovered ? "ring-2" : "ring-0"
@@ -609,7 +533,7 @@ const SelectableToggle = ({
         style={{
           borderRadius: 4,
         }}
-      />
+      ></span>
       {title}
     </button>
   );
