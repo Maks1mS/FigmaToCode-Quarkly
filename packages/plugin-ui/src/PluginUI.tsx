@@ -41,9 +41,7 @@ type PluginUIProps = {
   gradients: { cssPreview: string; exportValue: string }[];
 };
 
-export const PluginUI = (props: PluginUIProps) => {
-  const [isResponsiveExpanded, setIsResponsiveExpanded] = useState(false);
-
+export const PluginUI = (props: PluginUIProps) => {  
   return (
     <div className="flex flex-col h-full dark:text-white">
       <div
@@ -55,27 +53,6 @@ export const PluginUI = (props: PluginUIProps) => {
       ></div>
       <div className="flex flex-col h-full overflow-y-auto">
         <div className="flex flex-col items-center px-4 py-2 gap-2 dark:bg-transparent">
-          {/* <div className="flex flex-col items-center p-4 bg-neutral-50 dark:bg-neutral-800 rounded">
-            <Description selected={props.selectedFramework} />
-          </div> */}
-          {
-            /*
-              {props.htmlPreview && (
-                <Preview
-                  htmlPreview={props.htmlPreview}
-                  isResponsiveExpanded={isResponsiveExpanded}
-                  setIsResponsiveExpanded={setIsResponsiveExpanded}
-                />
-            )}
-            */
-          }
-          {/* <ResponsiveGrade /> */}
-          {/* <div className="h-2"></div>
-        <div className="flex justify-end w-full mb-1">
-          <button className="px-4 py-2 text-sm font-semibold text-white bg-neutral-900 rounded-lg ring-1 ring-neutral-700 hover:bg-neutral-700 focus:outline-none">
-            Copy
-          </button>
-        </div> */}
           <CodePanel
             code={props.code}
             selectedFramework={props.selectedFramework}
