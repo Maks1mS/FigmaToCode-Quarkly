@@ -1,8 +1,5 @@
 import { rgbTo6hex } from "../color";
-import { swiftuiColor, swiftuiGradient } from "../../swiftui/builderImpl/swiftuiColor";
-import { tailwindColor, tailwindGradient } from "../../tailwind/builderImpl/tailwindColor";
-import { flutterColor, flutterGradient } from "../../flutter/builderImpl/flutterColor";
-import { htmlColor, htmlGradientFromFills } from "../../html/builderImpl/htmlColor";
+import { htmlColor, htmlGradientFromFills } from "../../quarkly/builderImpl/htmlColor";
 import { calculateContrastRatio } from "./commonUI";
 import { FrameworkTypes } from "../../code";
 
@@ -53,15 +50,7 @@ const convertSolidColor = (
     contrastWhite: calculateContrastRatio(fill.color, white),
   };
 
-  if (framework === "Flutter") {
-    output.exportValue = flutterColor(fill.color, opacity);
-  } else if (framework === "HTML") {
-    output.exportValue = htmlColor(fill.color, opacity);
-  } else if (framework === "Tailwind") {
-    Object.assign(output, tailwindColor(fill));
-  } else if (framework === "SwiftUI") {
-    output.exportValue = swiftuiColor(fill.color, opacity);
-  }
+  output.exportValue = htmlColor(fill.color, opacity);
 
   return output;
 };
@@ -76,21 +65,7 @@ export const retrieveGenericLinearGradients = (
 
   selectionColors?.paints.forEach((paint) => {
     if (paint.type === "GRADIENT_LINEAR") {
-      let exportValue = "";
-      switch (framework) {
-        case "Flutter":
-          exportValue = flutterGradient(paint);
-          break;
-        case "HTML":
-          exportValue = htmlGradientFromFills([paint]);
-          break;
-        case "Tailwind":
-          exportValue = tailwindGradient(paint);
-          break;
-        case "SwiftUI":
-          exportValue = swiftuiGradient(paint);
-          break;
-      }
+      let exportValue = htmlGradientFromFills([paint]);
       colorStr.push({
         cssPreview: htmlGradientFromFills([paint]),
         exportValue,

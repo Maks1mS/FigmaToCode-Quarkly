@@ -31,7 +31,7 @@ export class HtmlTextBuilder extends HtmlDefaultBuilder {
           "letter-spacing": this.letterSpacing(segment.letterSpacing, segment.fontSize),
           // "text-indent": segment.indentation,
           "word-wrap": "break-word",
-          "padding": "unset",
+          "margin": "unset",
         },
         this.isJSX
       );

@@ -3,12 +3,8 @@ import {
   retrieveGenericSolidUIColors,
   retrieveGenericLinearGradients as retrieveGenericGradients,
 } from "./common/retrieveUI/retrieveColors";
-import { flutterMain } from "./flutter/flutterMain";
 import { htmlMain } from "./html/htmlMain";
 import { quarklyMain } from "./quarkly/quarklyMain";
-import { swiftuiMain } from "./swiftui/swiftuiMain";
-import { tailwindMain } from "./tailwind/tailwindMain";
-
 export type FrameworkTypes = "Flutter" | "SwiftUI" | "HTML" | "Tailwind" | "Quarkly";
 
 export type PluginSettings = {
@@ -38,24 +34,7 @@ export const run = (settings: PluginSettings) => {
     figma.currentPage.selection,
     null
   );
-  let result = "";
-  switch (settings.framework) {
-    case "HTML":
-      result = htmlMain(convertedSelection, settings);
-      break;
-    case "Tailwind":
-      result = tailwindMain(convertedSelection, settings);
-      break;
-    case "Flutter":
-      result = flutterMain(convertedSelection, settings);
-      break;
-    case "SwiftUI":
-      result = swiftuiMain(convertedSelection, settings);
-      break;
-    case "Quarkly":
-      result = quarklyMain(convertedSelection, settings);
-      break;
-  }
+  const result = quarklyMain(convertedSelection, settings);
 
   figma.ui.postMessage({
     type: "code",

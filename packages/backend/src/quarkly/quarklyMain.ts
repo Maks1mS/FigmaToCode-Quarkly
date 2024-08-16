@@ -217,6 +217,7 @@ export const htmlContainer = (
     let tag = "Box";
     let src = "";
     if (retrieveTopFill(node.fills)?.type === "IMAGE") {
+      console.log(node)
       if (!("children" in node) || node.children.length === 0) {
         tag = "Image";
         src = ` src="https://via.placeholder.com/${node.width.toFixed(
